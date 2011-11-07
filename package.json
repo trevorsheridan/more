@@ -1,0 +1,16 @@
+{ "name": "expedia base",
+  "description": "expedia mobile web base prototypes",
+  "version": "0.1.0",
+  "author": "Trevor Sheridan <v-tsheridan@expedia.com>",
+  /*
+  "bin": {
+    "e3": "./bin/e3"
+  },
+  */
+  "dependencies": {
+    "express": "2.5.0"
+  },
+  "devDependencies": {
+    "less": "1.1.4"
+  }
+}
