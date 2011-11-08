@@ -4,8 +4,5 @@
   "author": "Trevor Sheridan <v-tsheridan@expedia.com>",
   "dependencies": {
     "express": "2.5.0"
-  },
-  "devDependencies": {
-    "less": "1.1.4"
   }
 }
