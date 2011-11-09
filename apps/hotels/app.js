@@ -11,4 +11,7 @@ app.get('*', function(req, res) {
     res.sendfile(__dirname + '/' + (r = req.params[0], /\.(.*)$/i.exec(r) ? r : r + '.html'));
 });
 
-app.listen(9292);
+var port = process.env.PORT || 3000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});

@@ -4,5 +4,10 @@
   "author": "Trevor Sheridan <v-tsheridan@expedia.com>",
   "dependencies": {
     "express": "2.5.0"
+  },
+  "devDependencies": {
+    "coffee-script": ">= 1.1.2",
+    "nomnom":        ">= 1.5.1",
+    "underscore":    ">= 1.2.1"
   }
 }

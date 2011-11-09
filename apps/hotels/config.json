@@ -1,0 +1,14 @@
+{ "name": "hotels",
+  "styles": {
+    "path": "/_public/styles/",
+    "less": {
+      "global.less": "global.css",
+      "home.less": "home.css",
+      "search.less": "search.css",
+      "details.less": "details.css",
+      "checkout.less": "checkout.css",
+      "confirmation.less": "confirmation.css",
+      "forms.less": "forms.css"
+    }
+  }
+}
