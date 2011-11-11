@@ -4,7 +4,6 @@ _      = require 'underscore'
 path   = require 'path'
 nomnom = require 'nomnom'
 
-Spy    = require('./spy').Spy
 Less   = require('./compilers/less').Less
 Config = require('./config').Config
 Server = require('./server').Server
@@ -31,6 +30,7 @@ exports.Command = class Command
           console.log err
     compile() if _.any(o, (value) => value is 'css')
     Spy::watch(process.cwd(), compile) if _.any(o, (value) => value is 'watch')
+    
     
 #   server: (options...) ->
 #     switch flag
