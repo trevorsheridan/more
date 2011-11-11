@@ -11,11 +11,8 @@ Server = require('./server').Server
 
 exports.Command = class Command
   
-  constructor: ->
+  constructor: (action, flags) ->
     @commands = {compile: ['css', 'watch'], server: ['start']}
-  
-  # Dispatch incoming commands to the appropriate action.
-  invoke: (action, flags...) ->
     flags = _.flatten(flags)
     throw new Error "The action passed to command isn't recognized." if (_.any @commands, (value, key) => yes if action is key) isnt yes
     _.each flags, (flag) =>
@@ -31,9 +28,9 @@ exports.Command = class Command
           l = new Less(process.cwd() + '/less/' + input, process.cwd() + '/compiled/' + output)
           l.parse((res) -> console.log '[less] wrote file: ' + res.file)
         catch err
-          console.log err # Make this better will ya?
+          console.log err
     compile() if _.any(o, (value) => value is 'css')
-    Spy::watch(process.cwd(), -> console.log 'called') if _.any(o, (value) => value is 'watch')
+    Spy::watch(process.cwd(), compile) if _.any(o, (value) => value is 'watch')
     
 #   server: (options...) ->
 #     switch flag
@@ -53,7 +50,7 @@ exports.run = ->
         help: ''
     .callback (options) ->
       delete options['0'] and delete options['_']
-      (new Command).invoke('compile', _.keys(options))
+      new Command 'compile', _.keys(options)
     .help ''
     
 #   nomnom.command('server')
@@ -64,7 +61,7 @@ exports.run = ->
 #         help: ''
 #     .callback (options) ->
 #       delete options['0'] and delete options['_']
-#       (new Command).invoke('server', _.keys(options))
+#       new Command 'server', _.keys(options)
 #     .help ''
     
   nomnom.options
