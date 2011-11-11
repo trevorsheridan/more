@@ -1,5 +1,5 @@
 { "name": "productivity",
-  "description": "Utilities that make life easier",
+  "description": "Utilities to keep you producing!",
   "version": "0.1.0",
   "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
   "dependencies": {
