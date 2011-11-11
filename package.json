@@ -1,6 +1,6 @@
 { "name": "productivity",
   "description": "Utilities to keep you producing!",
-  "version": "0.1.0",
+  "version": "0.1.0-pre",
   "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
   "dependencies": {
     "express": "2.5.0"
