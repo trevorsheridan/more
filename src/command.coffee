@@ -17,11 +17,9 @@ exports.Command = class Command
   # Dispatch incoming commands to the appropriate action.
   invoke: (action, flags...) ->
     flags = _.flatten(flags)
-    throw "The action passed to command isn't recognized." \
-      if (_.any @commands, (value, key) => yes if action is key) isnt yes
+    throw new Error "The action passed to command isn't recognized." if (_.any @commands, (value, key) => yes if action is key) isnt yes
     _.each flags, (flag) =>
-      throw "The flag --#{flag} isn't recognized by the action '#{action}'" \
-        if _.any(@commands[action], (value) => yes if flag is value) isnt yes    
+      throw new Error "The flag --#{flag} isn't recognized by the action '#{action}'" if _.any(@commands[action], (value) => yes if flag is value) isnt yes    
     @[action](flags)
   
   compile: (options...) ->
@@ -37,9 +35,9 @@ exports.Command = class Command
     compile() if _.any(o, (value) => value is 'css')
     Spy::watch(process.cwd(), -> console.log 'called') if _.any(o, (value) => value is 'watch')
     
-  server: (options...) ->
-    switch flag
-      when 'start' then new Server process.cwd() + '/app.js' # make this so the filename doesn't have to be app.js
+#   server: (options...) ->
+#     switch flag
+#       when 'start' then new Server process.cwd() + '/app.js' # make this so the filename doesn't have to be app.js
 
 exports.run = ->
   
@@ -58,16 +56,16 @@ exports.run = ->
       (new Command).invoke('compile', _.keys(options))
     .help ''
     
-  nomnom.command('server')
-    .options
-      start:
-        abbr: 's'
-        flag: true
-        help: ''
-    .callback (options) ->
-      delete options['0'] and delete options['_']
-      (new Command).invoke('server', _.keys(options))
-    .help ''
+#   nomnom.command('server')
+#     .options
+#       start:
+#         abbr: 's'
+#         flag: true
+#         help: ''
+#     .callback (options) ->
+#       delete options['0'] and delete options['_']
+#       (new Command).invoke('server', _.keys(options))
+#     .help ''
     
   nomnom.options
     version:
