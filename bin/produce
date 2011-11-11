@@ -4,4 +4,4 @@ var fs	 = require('fs');
 var path = require('path');
 var lib	 = path.join(__dirname, '../lib');
 
-require(lib + '/cli').run();
+require(lib + '/command').run();

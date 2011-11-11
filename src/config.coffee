@@ -1,6 +1,6 @@
 fs = require 'fs'
 
-exports.config = class Config
+exports.Config = class Config
   
   #Config::loadFrom(loc)
   @loadFrom = (loc) ->
@@ -9,6 +9,7 @@ exports.config = class Config
       @load conf
     catch err
       console.log 'No config file to read from at location: ' + err.path if err.code is 'ENOENT'
+      process.exit 1
   
   #Config::load(data)
   @load = (data) ->
@@ -16,4 +17,4 @@ exports.config = class Config
       JSON.parse data
     catch err
       console.log 'The JSON parser reported the following error: ' + err
-      process.exit(1);
+      process.exit 1
