@@ -14,11 +14,12 @@ exports.Command = class Command
   constructor: ->
     @commands = {compile: ['css', 'watch'], server: ['start']}
   
-  invoke: (action, flags...) -> # Dispatch incoming commands to the appropriate action
+  # Dispatch incoming commands to the appropriate action.
+  invoke: (action, flags...) ->
     flags = _.flatten(flags)
-    throw "The action passed to command isn't recognized." \ # Check if the action is a registered action
+    throw "The action passed to command isn't recognized." \
       if (_.any @commands, (value, key) => yes if action is key) isnt yes
-    _.each flags, (flag) => # Iterate through each flag and check if it corresponds to the flags set for the given action.
+    _.each flags, (flag) =>
       throw "The flag --#{flag} isn't recognized by the action '#{action}'" \
         if _.any(@commands[action], (value) => yes if flag is value) isnt yes    
     @[action](flags)
@@ -42,7 +43,6 @@ exports.Command = class Command
 
 exports.run = ->
   
-  # Commands
   nomnom.command('compile')
     .options
       css:
@@ -69,7 +69,6 @@ exports.run = ->
       (new Command).invoke('server', _.keys(options))
     .help ''
     
-  # Global Options
   nomnom.options
     version:
       abbr: 'v'
