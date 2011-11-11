@@ -4,31 +4,54 @@ _      = require 'underscore'
 path   = require 'path'
 nomnom = require 'nomnom'
 
-Config = require('./config').Config
-Server = require('./server').Server
 Less   = require('./compilers/less').Less
-
+Server = require('./server').Server
+Config = require('./config').Config
 
 exports.Command = class Command
   
-  command: (action, options, opts) -> # Dispatch incoming commands to the appropriate action
-    flag = _.find(_.keys(options), (item) -> yes if item in opts)
-    if @[action] and flag? then @[action](flag) # Check if there's a corresponding member (action) and a presence of a flag.
+  constructor: ->
+    @commands = {compile: ['css', 'watch'], server: ['start']}
   
-  compile: (flag) ->
-    switch flag
-      when 'css'
-        config = Config.loadFrom(process.cwd() + '/config.json')
-        for input, output of config['compiler']['css']
-          try
-            l = new Less(process.cwd() + '/less/' + input, process.cwd() + '/compiled/' + output)
-            l.parse((res) -> console.log '[less] wrote file: ' + res.file)
-          catch err
-            console.log err #Write a better error message here.
+  invoke: (action, flags...) -> # Dispatch incoming commands to the appropriate action
+    flags = _.flatten(flags)
+    
+    throw "The action passed to command isn't recognized." \ # Check if the action is a registered action
+      if (_.any @commands, (value, key) => yes if action is key) isnt yes
+    
+    _.each flags, (flag) => # Iterate through each flag and check if it corresponds to the flags set for the given action.
+      throw "The flag --#{flag} isn't recognized by the action '#{action}'" \
+        if _.any(@commands[action], (value) => yes if flag is value) isnt yes
+    
+    @[action](flags)
   
-  server: (flag) ->
+  compile: (options...) ->
+    
+    o       = _.flatten(options)
+    config  = Config.loadFrom(process.cwd() + '/config.json')
+    
+    compile = =>
+      for input, output of config['compiler']['css']
+        try
+          l = new Less(process.cwd() + '/less/' + input, process.cwd() + '/compiled/' + output)
+          l.parse((res) -> console.log '[less] wrote file: ' + res.file)
+        catch err
+          console.log err #Write a better error message here.
+    
+    compile() if _.any(o, (value) => value is 'css')
+    
+    new Spy(compile) if _.any(o, (value) => value is 'watch')
+  
+  server: (options...) ->
     switch flag
       when 'start' then new Server process.cwd() + '/app.js' # FIX!
+
+
+class Spy
+
+  constructor: (action) ->
+    console.log action
+  
 
 
 exports.run = ->
@@ -40,8 +63,13 @@ exports.run = ->
         abbr: 'c'
         flag: true
         help: ''
+      watch:
+        abbr: 'w'
+        flag: true
+        help: ''
     .callback (options) ->
-      Command::command('compile', options, ['css'])
+      delete options['0'] and delete options['_']
+      (new Command).invoke('compile', _.keys(options))
     .help ''
     
   nomnom.command('server')
@@ -51,7 +79,8 @@ exports.run = ->
         flag: true
         help: ''
     .callback (options) ->
-      Command::command('server', options, ['start'])
+      delete options['0'] and delete options['_']
+      (new Command).invoke('server', _.keys(options))
     .help ''
     
   # Global Options
