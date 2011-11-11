@@ -1,5 +1,5 @@
-{ "name": "expedia-base",
-  "description": "expedia mobile web base prototypes",
+{ "name": "e3-cs-utils",
+  "description": "front-end utilities to make life easier",
   "version": "0.1.0",
   "author": "Trevor Sheridan <v-tsheridan@expedia.com>",
   "dependencies": {

@@ -1,0 +1,7 @@
+{ "compiler": {
+    "css": {
+      "base.less": "base.css",
+      "new.less": "new.css"
+    }
+  }
+}

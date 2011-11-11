@@ -1,10 +1,12 @@
 # Command class for e3. Exposes a command-line interface through nomnom, and a wrapper class to access commands within the library.
 
-_     = require 'underscore'
-fs    = require 'fs'
-path  = require 'path'
-spawn = require('child_process').spawn
-less  = require 'less.js'
+_      = require 'underscore'
+fs     = require 'fs'
+path   = require 'path'
+spawn  = require('child_process').spawn
+config = require('./config').config
+less   = require 'less.js'
+
 
 class Server
   
@@ -23,28 +25,31 @@ class Server
 
 
 class Compiler
-    
+  
+  # Compiler.read()
   read: ->
-    return fs.readFileSync path.join(process.cwd(), @f), 'utf-8'
-    
-  save: (name, data) ->
-    fs.writeFile name, (new Buffer data, 'utf-8'), (err) ->
+    fs.readFileSync @f, 'utf-8'
+  
+  # Compiler.save(name, data)
+  save: (out, data, opts...) ->
+    fs.writeFile out, (new Buffer data, 'utf-8'), (err) ->
       if err then throw err
-      console.log('saved file!') # FIX!
-    
-    
+      opts[0].call this, {code: 1 ,file: out, data: data}
+
+
 class Less extends Compiler
   
-  constructor: (file) ->
+  # Less.save(file, out)
+  constructor: (file, out) ->
     @f = file
-    @d = @read(@f)
-    
-  parse: ->
-    that = @
-    (new less.Parser {paths: ['.'], filename: @f}).parse @d, (err, tree) ->
+    @o = out
+  
+  # Less.parse([opts])
+  parse: (opts...) ->
+    (new less.Parser {paths: ['.', './less'], filename: @f}).parse @read(), (err, tree) =>
       if err then throw err
-      that.save('base2.css', tree.toCSS()) # FIX!
-      
+      @save @o, tree.toCSS(), opts[0] # Do some pub/sub action here to avoid all of the damn callbacks.
+
 
 exports.Command = class Command
   
@@ -55,14 +60,14 @@ exports.Command = class Command
   compile: (flag) ->
     switch flag
       when 'css'
-        l = new Less('base.less') # FIX!
-        l.parse()
+        config = config.loadFrom(process.cwd() + '/config.json')
+        for input, output of config['compiler']['css']
+          try
+            l = new Less(process.cwd() + '/less/' + input, process.cwd() + '/compiled/' + output)
+            l.parse((res) -> console.log '[less] wrote file: ' + res.file)
+          catch err
+            console.log err #Write a better error message here.
   
   server: (flag) ->
     switch flag
       when 'start' then new Server process.cwd() + '/app.js' # FIX!
-  
-  watch: (flag) ->
-    switch flag
-      when 'dev' then console.log 'watching for dev changes.'
-    console.log 'watching for changes...'

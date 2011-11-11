@@ -2,6 +2,7 @@ Command = new require('./command').Command
 parser  = require 'nomnom'
 
 exports.run = ->
+  
   # Commands
   parser.command('compile')
     .options
