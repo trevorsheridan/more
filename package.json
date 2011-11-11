@@ -1,7 +1,7 @@
-{ "name": "e3-cs-utils",
-  "description": "front-end utilities to make life easier",
+{ "name": "productivity",
+  "description": "Utilities that make life easier",
   "version": "0.1.0",
-  "author": "Trevor Sheridan <v-tsheridan@expedia.com>",
+  "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
   "dependencies": {
     "express": "2.5.0"
   },
