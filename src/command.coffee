@@ -11,7 +11,7 @@ Server = require('./server').Server
 exports.Command = class Command
   
   constructor: (action, flags) ->
-    @commands = {compile: ['css', 'watch'], server: ['start']}
+    @commands = {compile: ['css', 'hunt'], server: ['start']}
     flags = _.flatten(flags)
     throw new Error "The action passed to command isn't recognized." if (_.any @commands, (value, key) => yes if action is key) isnt yes
     _.each flags, (flag) =>
@@ -21,16 +21,17 @@ exports.Command = class Command
   compile: (options...) ->
     o = _.flatten(options)
     config = Config.loadFrom(process.cwd() + '/config.json') # Add validation by passing an object of keys to validate against. Add this in later.
-    compile = =>
+    if _.any(o, (value) => value is 'css' or (value is 'css' and value is 'hunt'))
       for input, output of config['compiler']['css']['relation']
         try
-          l = new Less(path.join(process.cwd(), config['compiler']['css']['input'], input), path.join(process.cwd(), config['compiler']['css']['output'], output))
-          l.parse((res) -> console.log '[less] wrote file: ' + res.file)
+          input = path.join process.cwd(), config['compiler']['css']['input'], input
+          output = path.join process.cwd(), config['compiler']['css']['output'], output
+          new Less(input, output).parse (res) ->
+            console.log '[less] wrote file: ' + res.file
+          .watch ->
+            @parse (res) -> console.log '[less] wrote file: ' + res.file
         catch err
           console.log err
-    compile() if _.any(o, (value) => value is 'css')
-    Spy::watch(process.cwd(), compile) if _.any(o, (value) => value is 'watch')
-    
     
 #   server: (options...) ->
 #     switch flag
@@ -43,11 +44,11 @@ exports.run = ->
       css:
         abbr: 'c'
         flag: true
-        help: ''
-      watch:
+        help: 'Compile CSS.'
+      hunt:
         abbr: 'w'
         flag: true
-        help: ''
+        help: 'Continously hunt for changes.'
     .callback (options) ->
       delete options['0'] and delete options['_']
       new Command 'compile', _.keys(options)
