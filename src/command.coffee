@@ -22,9 +22,9 @@ exports.Command = class Command
     o = _.flatten(options)
     config = Config.loadFrom(process.cwd() + '/config.json') # Add validation by passing an object of keys to validate against. Add this in later.
     compile = =>
-      for input, output of config['compiler']['css']['relations']
+      for input, output of config['compiler']['css']['relation']
         try
-          l = new Less(path.join(process.cwd(), config['compiler']['css']['io']['input'], input), path.join(process.cwd(), config['compiler']['css']['io']['output'], output))
+          l = new Less(path.join(process.cwd(), config['compiler']['css']['input'], input), path.join(process.cwd(), config['compiler']['css']['output'], output))
           l.parse((res) -> console.log '[less] wrote file: ' + res.file)
         catch err
           console.log err
