@@ -12,7 +12,7 @@ Next install the Node Package Manager (NPM). To do so run the following command:
 
 #### Amass
 
-Once you've installed Node and NPM clone the latest stable release from Github, navigate to the "amass" directory in a terminal and type "npm install -g". This will install Amass globally.
+Once you've installed Node and NPM clone the latest stable release from Github, navigate to the "amass" directory in a terminal and type "npm install -g". This will install Amass globally. You can now do whatever you want with the amass clone.
 
 ### Uninstall
 
