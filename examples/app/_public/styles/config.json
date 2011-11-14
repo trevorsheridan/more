@@ -1,6 +1,12 @@
 { "compiler": {
     "css": {
-      "base.less": "base.css"
+      "io": {
+        "input": "./less",
+        "output": "./compiled"
+      },
+      "relations": {
+        "base.less": "base.css"
+      }
     }
   }
 }
