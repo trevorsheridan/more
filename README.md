@@ -18,11 +18,11 @@ Once you've installed Node and NPM clone the latest stable release from Github, 
 
 To uninstall Amass run the command: `npm uninstall -g amass`.
 
-### Commands
+### CSS
 
-#### CSS
+### Config.json
 
-In order to compile CSS a config.json file must be present. Config.json instructs the amass compiler on how you would like it to behave.
+In order to compile CSS a config.json file must be present in the directory where you want to run the CSS compiler. An example is provided:
 
     { "compiler": {
         "css": {
@@ -34,6 +34,8 @@ In order to compile CSS a config.json file must be present. Config.json instruct
         }
       }
     }
+
+#### Commands
 
 CSS: `amass compile --css` or `amass compile -c`
 
