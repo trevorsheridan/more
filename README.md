@@ -1,4 +1,4 @@
-Amass is a command line utility to rapidly compile Less into static CSS.
+Hunter is a command line utility to rapidly compile Less into static CSS.
 
 ### Install
 
@@ -10,13 +10,13 @@ Node.js >= 5.0 must be installed. To see which version of Node is installed on y
 
 Next install the Node Package Manager (NPM). To do so run the following command: `curl http://npmjs.org/install.sh | sh` or `curl http://npmjs.org/install.sh | sudo sh`.
 
-#### Amass
+#### Hunter
 
-Once you've installed Node and NPM clone the latest stable release from Github, navigate to the "amass" directory in a terminal and type "npm install -g". This will install Amass globally. You can now do whatever you want with the amass clone.
+Once you've installed Node and NPM clone the latest stable release from Github, navigate to the "hunter" directory in a terminal and type "npm install -g". This will install Hunter globally. You can now do whatever you want with the hunter clone.
 
 ### Uninstall
 
-To uninstall Amass run the command: `npm uninstall -g amass`.
+To uninstall Hunter run the command: `npm uninstall -g hunter`.
 
 ### CSS
 
@@ -37,6 +37,6 @@ In order to compile CSS a config.json file must be present in the directory wher
 
 #### Commands
 
-Compile CSS: `amass compile --css` or `amass compile -c`
+Compile CSS: `hunter compile --css` or `hunter compile -c`
 
-Watch for changes and compile CSS (coming soon): `amass compile --css --watch` or `amass compile -cw`
+Watch for changes and compile CSS (coming soon): `hunter compile --css --hunt` or `hunter compile -chu`
