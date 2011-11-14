@@ -37,6 +37,6 @@ In order to compile CSS a config.json file must be present in the directory wher
 
 #### Commands
 
-CSS: `amass compile --css` or `amass compile -c`
+Compile CSS: `amass compile --css` or `amass compile -c`
 
-CSS and watch for changes: `amass compile --css --watch` or `amass compile -cw`
+Watch for changes and compile CSS (coming soon): `amass compile --css --watch` or `amass compile -cw`
