@@ -1,6 +1,6 @@
 path     = require 'path'
 Compiler = require('../compiler').Compiler
-less     = require 'less.js'
+less     = require 'less'
 
 exports.Less = class Less extends Compiler
   

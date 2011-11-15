@@ -7,6 +7,7 @@ nomnom = require 'nomnom'
 Less   = require('./compilers/less').Less
 Config = require('./config').Config
 Server = require('./server').Server
+Hunter = require './hunter'
 
 exports.Command = class Command
   
@@ -32,7 +33,7 @@ exports.Command = class Command
             @parse (res) -> console.log '[less] wrote file: ' + res.file
         catch err
           console.log err
-    
+      
 #   server: (options...) ->
 #     switch flag
 #       when 'start' then new Server process.cwd() + '/app.js' # make this so the filename doesn't have to be app.js
@@ -71,6 +72,6 @@ exports.run = ->
       flag: true
       help: 'Display the current version.'
       callback: ->
-        return "Productivity version #{Productivity.VERSION}"
+        return "Hunter version #{Hunter.VERSION}"
   
   nomnom.parse()

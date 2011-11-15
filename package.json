@@ -1,12 +1,13 @@
 { "name": "hunter",
   "description": "Utilities to keep you producing!",
-  "version": "0.1.0-pre",
+  "version": "0.1.1",
   "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
   "dependencies": {
-    "express": "2.5.0",
-    "coffee-script": ">= 1.1.2",
-    "nomnom":        ">= 1.5.1",
-    "underscore":    ">= 1.2.1"
+    "express":       "2.5.0",
+    "coffee-script": "1.1.2",
+    "nomnom":        "1.5.1",
+    "underscore":    "1.2.1",
+    "less":          "1.1.5"
   },
   "bin": { "hunter": "./bin/hunter" }
 }
