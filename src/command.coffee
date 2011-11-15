@@ -4,9 +4,8 @@ _      = require 'underscore'
 path   = require 'path'
 nomnom = require 'nomnom'
 
-Less   = require('./compilers/less').Less
 Config = require('./config').Config
-Server = require('./server').Server
+Less   = require('./compilers/less').Less
 Hunter = require './hunter'
 
 exports.Command = class Command
@@ -33,10 +32,6 @@ exports.Command = class Command
             @parse (res) -> console.log '[less] wrote file: ' + res.file
         catch err
           console.log err
-      
-#   server: (options...) ->
-#     switch flag
-#       when 'start' then new Server process.cwd() + '/app.js' # make this so the filename doesn't have to be app.js
 
 exports.run = ->
   
@@ -54,17 +49,6 @@ exports.run = ->
       delete options['0'] and delete options['_']
       new Command 'compile', _.keys(options)
     .help ''
-    
-#   nomnom.command('server')
-#     .options
-#       start:
-#         abbr: 's'
-#         flag: true
-#         help: ''
-#     .callback (options) ->
-#       delete options['0'] and delete options['_']
-#       new Command 'server', _.keys(options)
-#     .help ''
     
   nomnom.options
     version:
