@@ -1,11 +1,9 @@
-{ "name": "productivity",
+{ "name": "hunter",
   "description": "Utilities to keep you producing!",
   "version": "0.1.0-pre",
   "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
   "dependencies": {
-    "express": "2.5.0"
-  },
-  "devDependencies": {
+    "express": "2.5.0",
     "coffee-script": ">= 1.1.2",
     "nomnom":        ">= 1.5.1",
     "underscore":    ">= 1.2.1"
