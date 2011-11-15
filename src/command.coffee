@@ -11,7 +11,7 @@ Sift = require './sift'
 exports.Command = class Command
   
   constructor: (action, flags) ->
-    @commands = {compile: ['css', 'hunt'], server: ['start']}
+    @commands = {compile: ['css', 'watch'], server: ['start']}
     flags = _.flatten(flags)
     throw new Error "The action passed to command isn't recognized." if (_.any @commands, (value, key) => yes if action is key) isnt yes
     _.each flags, (flag) =>
@@ -21,7 +21,7 @@ exports.Command = class Command
   compile: (options...) ->
     o = _.flatten(options)
     config = Config.loadFrom(process.cwd() + '/config.json') # Add validation by passing an object of keys to validate against. Add this in later.
-    if _.any(o, (value) => value is 'css' or (value is 'css' and value is 'hunt'))
+    if _.any(o, (value) => value is 'css' or (value is 'css' and value is 'watch'))
       for input, output of config['compiler']['css']['relation']
         try
           input = path.join process.cwd(), config['compiler']['css']['input'], input
@@ -41,10 +41,10 @@ exports.run = ->
         abbr: 'c'
         flag: true
         help: 'Compile CSS.'
-      hunt:
+      watch:
         abbr: 'w'
         flag: true
-        help: 'Continously hunt for changes.'
+        help: 'Continously watch for changes.'
     .callback (options) ->
       delete options['0'] and delete options['_']
       new Command 'compile', _.keys(options)
