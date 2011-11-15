@@ -4,8 +4,6 @@ _      = require 'underscore'
 path   = require 'path'
 nomnom = require 'nomnom'
 
-fs     = require 'fs'
-
 Config = require('./config').Config
 Less   = require('./compilers/less').Less
 Sift = require './sift'
