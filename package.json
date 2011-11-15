@@ -1,5 +1,5 @@
 { "name": "sift",
-  "description": "Utilities to keep you producing!",
+  "description": "CSS compilation utility",
   "version": "0.1.2",
   "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
   "dependencies": {
