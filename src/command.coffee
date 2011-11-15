@@ -4,6 +4,8 @@ _      = require 'underscore'
 path   = require 'path'
 nomnom = require 'nomnom'
 
+fs     = require 'fs'
+
 Config = require('./config').Config
 Less   = require('./compilers/less').Less
 Sift = require './sift'
@@ -22,14 +24,15 @@ exports.Command = class Command
     o = _.flatten(options)
     config = Config.loadFrom(process.cwd() + '/config.json') # Add validation by passing an object of keys to validate against. Add this in later.
     if _.any(o, (value) => value is 'css' or (value is 'css' and value is 'watch'))
-      for input, output of config['compiler']['css']['relation']
+      for source, output of config['compiler']['css']['relation']
         try
-          input = path.join process.cwd(), config['compiler']['css']['input'], input
+          source = path.join process.cwd(), config['compiler']['css']['input'], source
           output = path.join process.cwd(), config['compiler']['css']['output'], output
-          new Less(input, output).parse (res) ->
-            console.log '[less] wrote file: ' + res.file
-          .watch ->
-            @parse (res) -> console.log '[less] wrote file: ' + res.file
+          new Less(source, output)
+            .parse (res) ->
+              console.log '[less] wrote file: ' + res.file
+            .watch ->
+              @parse (res) -> console.log '[less] wrote file: ' + res.file
         catch err
           console.log err
 

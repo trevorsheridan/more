@@ -3,7 +3,8 @@
       "input": "./less",
       "output": "./",
       "relation": {
-        "base.less": "base.css"
+        "base.less": "base.css",
+        "global.less": "global.css"
       }
     }
   }
