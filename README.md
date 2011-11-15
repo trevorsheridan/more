@@ -1,4 +1,4 @@
-Hunter is a command line utility to rapidly compile Less into static CSS.
+Sift is a command line utility to rapidly compile Less into static CSS.
 
 ### Install
 
@@ -10,13 +10,13 @@ Node.js >= 5.0 must be installed. To see which version of Node is installed on y
 
 Next install the Node Package Manager (NPM). To do so run the following command: `curl http://npmjs.org/install.sh | sh` or `curl http://npmjs.org/install.sh | sudo sh`.
 
-#### Hunter
+#### Sift
 
-Once you've installed Node and NPM clone the latest stable release from Github, navigate to the "hunter" directory in a terminal and type `sudo npm install -g`. This will install Hunter globally. You can now do whatever you want with the hunter clone.
+Once you've installed Node and NPM clone the latest stable release from Github, navigate to the "sift" directory in a terminal and type `sudo npm install -g`. This will install Sift globally. You can now do whatever you want with the Sift clone.
 
 ### Uninstall
 
-To uninstall Hunter run the command: `sudo npm uninstall -g hunter`.
+To uninstall Sift run the command: `sudo npm uninstall -g sift`.
 
 ### CSS
 
@@ -37,6 +37,6 @@ In order to compile CSS a config.json file must be present in the directory wher
 
 #### Commands
 
-Compile CSS: `hunter compile --css` or `hunter compile -c`
+Compile CSS: `sift compile --css` or `sift compile -c`
 
-Watch for changes and compile CSS (coming soon): `hunter compile --css --hunt` or `hunter compile -chu`
+Watch for changes and compile CSS (coming soon): `sift compile --css --watch` or `sift compile -cw`
