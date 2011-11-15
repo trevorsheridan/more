@@ -1,6 +1,6 @@
 { "name": "hunter",
   "description": "Utilities to keep you producing!",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
   "dependencies": {
     "express":       "2.5.0",

@@ -1,2 +1,2 @@
 # The current Hunter version number.
-exports.VERSION = '0.1.1'
+exports.VERSION = '0.1.2'
