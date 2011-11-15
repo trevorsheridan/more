@@ -7,9 +7,11 @@ exports.Compiler = class Compiler
     @source = source
     @output = output
   
+  # Compiler.read()
   read: ->
     fs.readFileSync @source, 'utf-8'
-    
+  
+  # Compiler.save(out, data, [callback])
   save: (out, data, opts...) ->
     fs.writeFileSync out, (new Buffer data, 'utf-8')
     opts[0].call @, {code: 1, file: out, data: data} if opts[0]?
@@ -31,6 +33,7 @@ exports.Compiler = class Compiler
             prevStats = stats
             opts[0].call @ if opts[0]?
   
+  # Compiler.childDirs(dir)
   # Synchronous, recursive directory tree lookup.
   childDirs: (dir) ->
     d = new Array
