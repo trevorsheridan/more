@@ -6,7 +6,7 @@ nomnom = require 'nomnom'
 
 Config = require('./config').Config
 Less   = require('./compilers/less').Less
-Hunter = require './hunter'
+Sift = require './sift'
 
 exports.Command = class Command
   
@@ -56,6 +56,6 @@ exports.run = ->
       flag: true
       help: 'Display the current version.'
       callback: ->
-        return "Hunter version #{Hunter.VERSION}"
+        return "Sift version #{Sift.VERSION}"
   
   nomnom.parse()

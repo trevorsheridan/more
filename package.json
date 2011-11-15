@@ -1,4 +1,4 @@
-{ "name": "hunter",
+{ "name": "sift",
   "description": "Utilities to keep you producing!",
   "version": "0.1.2",
   "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
@@ -9,5 +9,5 @@
     "underscore":    "1.2.1",
     "less":          "1.1.5"
   },
-  "bin": { "hunter": "./bin/hunter" }
+  "bin": { "sift": "./bin/sift" }
 }
