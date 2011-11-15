@@ -12,7 +12,7 @@ Next install the Node Package Manager (NPM). To do so run the following command:
 
 #### Hunter
 
-Once you've installed Node and NPM clone the latest stable release from Github, navigate to the "hunter" directory in a terminal and type "sudo npm install -g". This will install Hunter globally. You can now do whatever you want with the hunter clone.
+Once you've installed Node and NPM clone the latest stable release from Github, navigate to the "hunter" directory in a terminal and type `sudo npm install -g`. This will install Hunter globally. You can now do whatever you want with the hunter clone.
 
 ### Uninstall
 
