@@ -7,5 +7,6 @@
     "coffee-script": ">= 1.1.2",
     "nomnom":        ">= 1.5.1",
     "underscore":    ">= 1.2.1"
-  }
+  },
+  "bin": { "hunter": "./bin/hunter" }
 }
