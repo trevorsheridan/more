@@ -21,17 +21,17 @@ exports.Command = class Command
     @[action](flags)
   
   compile: (options...) ->
-    o = _.flatten(options)
+    options = _.flatten(options)
     config = Config.loadFrom(process.cwd() + '/config.json') # Add validation by passing an object of keys to validate against. Add this in later.
-    if _.any(o, (value) => value is 'css' or (value is 'css' and value is 'watch'))
+    if _.any(options, (value) => value is 'css' or (value is 'css' and value is 'watch'))
       for source, output of config['compiler']['css']['relation']
         try
           source = path.join process.cwd(), config['compiler']['css']['input'], source
           output = path.join process.cwd(), config['compiler']['css']['output'], output
-          new Less(source, output)
-            .parse (res) ->
-              console.log '[less] wrote file: ' + res.file
-            .watch ->
+          less = new Less(source, output).parse (res) ->
+            console.log '[less] wrote file: ' + res.file
+          if _.contains(options, 'watch')
+            less.watch ->
               @parse (res) -> console.log '[less] wrote file: ' + res.file
         catch err
           console.log err
