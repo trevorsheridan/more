@@ -18,3 +18,15 @@ exports.Compiler = class Compiler
   watch: (opts...) ->
     fs.watch path.dirname(@f), (event, filename) =>
       opts[0].call @
+  
+  # Synchronous, recursive directory tree lookup.
+  childDirs: (dir) ->
+    d = new Array
+    for file in fs.readdirSync path.normalize(dir)
+      do (file) =>
+        try
+          file = path.join(dir, file)
+          d.push file if fs.readdirSync file
+          for child in children = @childDirs file
+            d.push child if children.length > 0
+    return d
