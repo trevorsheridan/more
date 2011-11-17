@@ -36,7 +36,7 @@ exports.Command = class Command
       for file in watchFiles
         try
           l = new Less(file, less)
-          l.parse() # Initially parse the file.
+          l.parse()
           less[l.name()] = l
           
           save = (css) -> # Context shouldn't change, it will automatically change by whoever calls it.
