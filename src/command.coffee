@@ -42,11 +42,15 @@ exports.Command = class Command
           if _.all(options, (value) => value is 'css') # Compile then return to the prompt.
             for src, out of relations
               if path.join(sourceDir, src) is file
-                l.parse()
+                l.parse (css) -> # Don't change the context, leave this as a skiny arrow. The context will automatically switch to the active element.
+                  for src, out of relations
+                    if path.join(sourceDir, src) is @source
+                      @save path.join(outputDir, out), css, =>
+                        console.log '[less] wrote file: ' + @name()
           
           if _.any(options, (value) => value is 'watch') # Start watching :)
             l.watch -> # Don't change the context here. It will auto adjust.
-              @parse (css) -> # Don't change the context, leave this as a shinny arrow. The context will automatically switch to the active element.
+              @parse (css) -> # Don't change the context, leave this as a skiny arrow. The context will automatically switch to the active element.
                 for src, out of relations
                   if path.join(sourceDir, src) is @source
                     @save path.join(outputDir, out), css, =>
