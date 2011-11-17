@@ -3,11 +3,13 @@
   "version": "0.1.4",
   "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
   "dependencies": {
-    "express":       "2.5.0",
-    "coffee-script": "1.1.2",
-    "nomnom":        "1.5.1",
+    "less":          "1.1.5",
     "underscore":    "1.2.1",
-    "less":          "1.1.5"
+    "signals":       "0.7.0",
+    "nomnom":        "1.5.1"
+  },
+  "devDependencies": {
+    "coffee-script": "1.1.2"
   },
   "bin": { "sift": "./bin/sift" }
 }

@@ -1,12 +1,16 @@
 # Exposes a command-line interface through nomnom, and a wrapper class to access commands within the library.
 
-_      = require 'underscore'
-path   = require 'path'
-nomnom = require 'nomnom'
+fs      = require 'fs'
+path    = require 'path'
+_       = require 'underscore'
+signals = require 'signals'
+nomnom  = require 'nomnom'
 
-Config = require('./config').Config
-Less   = require('./compilers/less').Less
-Sift = require './sift'
+Config   = require('./config').Config
+Compiler = require('./compiler').Compiler
+Less     = require('./compilers/less').Less
+Sift     = require './sift'
+FileSystem = require('./filesystem').FileSystem
 
 exports.Command = class Command
   
@@ -20,19 +24,39 @@ exports.Command = class Command
   
   compile: (options...) ->
     options = _.flatten(options)
-    config = Config.loadFrom(process.cwd() + '/config.json')['compiler']['css']
+    config  = Config.loadFrom(process.cwd() + '/config.json')['compiler']['css']
+    
+    # CSS Compiler
     if _.any(options, (value) => value is 'css' or (value is 'css' and value is 'watch'))
-      for source, output of config['relation']
+      sourceDir = path.join process.cwd(), config['input']
+      outputDir = path.join process.cwd(), config['output']
+      relations = config['relation']
+      
+      watchFiles = FileSystem.getFilesInTree(FileSystem.analyzeStructure sourceDir, true)
+      for file in watchFiles
         try
-          source = path.join process.cwd(), config['input'], source
-          output = path.join process.cwd(), config['output'], output
-          less = new Less(source, output).parse (res) ->
-            console.log '[less] wrote file: ' + res.file
-          if _.contains(options, 'watch')
-            less.watch ->
-              @parse (res) -> console.log '[less] wrote file: ' + res.file
-        catch err
-          console.log err
+          l = new Less(file)
+          if _.any(options, (value) => value is 'css')
+            for src, out of relations
+              if path.join(sourceDir, src) is file
+                l.parse path.join(outputDir, out), (res) ->
+                  console.log '[less] wrote file: ' + res.file
+          if _.any(options, (value) => value is 'css' or value is 'watch') then l.watch =>
+            console.log 'changed'
+          
+#     config = Config.loadFrom(process.cwd() + '/config.json')['compiler']['css']
+#     if _.any(options, (value) => value is 'css' or (value is 'css' and value is 'watch'))
+#       for source, output of config['relation']
+#         try
+#           source = path.join process.cwd(), config['input'], source
+#           output = path.join process.cwd(), config['output'], output
+#           less = new Less(source, output).parse (res) ->
+#             console.log '[less] wrote file: ' + res.file
+#           if _.contains(options, 'watch')
+#             less.watch ->
+#               @parse (res) -> console.log '[less] wrote file: ' + res.file
+#         catch err
+#           console.log err
 
 exports.run = ->
   

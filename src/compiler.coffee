@@ -3,9 +3,9 @@ path = require 'path'
 
 exports.Compiler = class Compiler
   
-  constructor: (source, output) ->
+  constructor: (source) ->
     @source = source
-    @output = output
+#     @output = output
   
   # Compiler.read()
   read: ->
@@ -18,6 +18,7 @@ exports.Compiler = class Compiler
   
   # Compiler.watch([callback])
   watch: (opts...) ->
+    console.log 'watching'
     fs.stat @source, (err, prevStats) =>
       throw err if err
       watch = fs.watch @source, callback = (event) =>
@@ -32,16 +33,3 @@ exports.Compiler = class Compiler
               stats.mtime.getTime() is prevStats.mtime.getTime()
             prevStats = stats
             opts[0].call @ if opts[0]?
-  
-  # Compiler.childDirs(dir)
-  # Synchronous, recursive directory tree lookup.
-  childDirs: (dir) ->
-    d = new Array
-    for file in fs.readdirSync path.normalize(dir)
-      do (file) =>
-        try
-          file = path.join(dir, file)
-          d.push file if fs.readdirSync file
-          for child in children = @childDirs file
-            d.push child if children.length > 0
-    return d
