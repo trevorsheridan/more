@@ -26,7 +26,6 @@ exports.Command = class Command
     options = _.flatten(options)
     config  = Config.loadFrom(process.cwd() + '/config.json')['compiler']['css']
     
-    # CSS Compiler
     if _.any(options, (value) => value is 'css' or (value is 'css' and value is 'watch'))
       sourceDir = path.join process.cwd(), config['input']
       outputDir = path.join process.cwd(), config['output']
@@ -37,7 +36,7 @@ exports.Command = class Command
       for file in watchFiles
         try
           l = new Less(file, lessObjects)
-          l.parse() # Do an initial parsing.
+          l.parse() # Initially parse the file.
           lessObjects[l.name()] = l
           
           if _.all(options, (value) => value is 'css') # Compile then return to the prompt.
@@ -46,8 +45,12 @@ exports.Command = class Command
                 l.parse()
           
           if _.any(options, (value) => value is 'watch') # Start watching :)
-            l.watch ->
-              @parse()
+            l.watch -> # Don't change the context here. It will auto adjust.
+              @parse (css) -> # Don't change the context, leave this as a shinny arrow. The context will automatically switch to the active element.
+                for src, out of relations
+                  if path.join(sourceDir, src) is @source
+                    @save path.join(outputDir, out), css, =>
+                      console.log '[less] wrote file: ' + @name()
         
         catch err
           console.log err

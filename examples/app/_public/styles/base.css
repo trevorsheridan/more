@@ -1,3 +1,13 @@
+p {
+  color: blue;
+}
+target {
+  color: green;
+}
+input {
+  display: block;
+  color: green;
+}
 h1 {
   color: green;
 }
@@ -5,6 +15,13 @@ h2 {
   color: blue;
   background-image: url('');
 }
+h5 {
+  color: grays;
+}
 body {
   background: blue;
+}
+address {
+  display: block;
+  background: black;
 }

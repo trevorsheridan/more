@@ -6,20 +6,19 @@ Base = require('./base').Base
 
 exports.Compiler = class Compiler extends Base
   
-  constructor: (source, relatives) ->
+  constructor: (source) ->
     @source = source
-    @setName path.basename source
-    @relatives = relatives
+    @_name  = path.basename source
     super
   
   # Compiler.read()
   read: ->
     fs.readFileSync @source, 'utf-8'
   
-  # Compiler.save(out, data, [callback])
-  save: (out, data, opts...) ->
-    fs.writeFileSync out, (new Buffer data, 'utf-8')
-    opts[0].call @, {code: 1, file: out, data: data} if opts[0]?
+  # Compiler.save(output, data, [callback])
+  save: (output, data, callback...) ->
+    fs.writeFileSync output, (new Buffer data, 'utf-8')
+    callback[0].call @, {code: 1, file: output, data: data} if callback[0]?
   
   # Compiler.watch([callback])
   watch: (opts...) ->
