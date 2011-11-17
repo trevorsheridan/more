@@ -25,29 +25,24 @@ exports.Command = class Command
   compile: (options...) ->
     options = _.flatten(options)
     config  = Config.loadFrom(process.cwd() + '/config.json')['compiler']['css']
-    
     if _.any(options, (value) => value is 'css' or (value is 'css' and value is 'watch'))
-      sourceDir  = path.join process.cwd(), config['input']
-      outputDir  = path.join process.cwd(), config['output']
-      relations  = config['relation']
-      less       = new Object
+      sourceDir = path.join process.cwd(), config['input']
+      outputDir = path.join process.cwd(), config['output']
+      relations = config['relation']
+      less = new Object
       watchFiles = FileSystem.getFilesInTree(FileSystem.analyzeStructure sourceDir, true)
-      
       for file in watchFiles
         try
           l = new Less(file, less)
           l.parse()
           less[l.name()] = l
-          
           save = (css) -> # Context shouldn't change, it will automatically change by whoever calls it.
             for src, out of relations
               if path.join(sourceDir, src) is @source
                 @save path.join(outputDir, out), css, =>
                   console.log '[less] wrote file: ' + @name()
-          
           if _.all(options, (value) => value is 'css')
             l.parse save
-          
           if _.any(options, (value) => value is 'watch')
             l.watch -> # Context shouldn't change, it will automatically change by whoever calls it.
               @parse save
