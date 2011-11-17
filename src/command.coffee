@@ -37,16 +37,17 @@ exports.Command = class Command
       for file in watchFiles
         try
           l = new Less(file, lessObjects)
+          l.parse() # Do an initial parsing.
           lessObjects[l.name()] = l
           
-          if _.any(options, (value) => value is 'css')
+          if _.all(options, (value) => value is 'css') # Compile then return to the prompt.
             for src, out of relations
               if path.join(sourceDir, src) is file
-                @changed.dispatch(@)
+                l.parse()
           
-          l.parse()
-          if _.any(options, (value) => value is 'css' or value is 'watch') then l.watch ->
-            @parse()
+          if _.any(options, (value) => value is 'watch') # Start watching :)
+            l.watch ->
+              @parse()
         
         catch err
           console.log err
