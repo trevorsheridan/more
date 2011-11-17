@@ -1,11 +1,16 @@
-fs   = require 'fs'
-path = require 'path'
+fs      = require 'fs'
+path    = require 'path'
+signals = require 'signals'
 
-exports.Compiler = class Compiler
+Base = require('./base').Base
+
+exports.Compiler = class Compiler extends Base
   
-  constructor: (source) ->
+  constructor: (source, relatives) ->
     @source = source
-#     @output = output
+    @setName path.basename source
+    @relatives = relatives
+    super
   
   # Compiler.read()
   read: ->
@@ -18,7 +23,6 @@ exports.Compiler = class Compiler
   
   # Compiler.watch([callback])
   watch: (opts...) ->
-    console.log 'watching'
     fs.stat @source, (err, prevStats) =>
       throw err if err
       watch = fs.watch @source, callback = (event) =>

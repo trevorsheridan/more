@@ -33,16 +33,23 @@ exports.Command = class Command
       relations = config['relation']
       
       watchFiles = FileSystem.getFilesInTree(FileSystem.analyzeStructure sourceDir, true)
+      lessObjects = new Object
       for file in watchFiles
         try
-          l = new Less(file)
+          l = new Less(file, lessObjects)
+          lessObjects[l.name()] = l
+          
           if _.any(options, (value) => value is 'css')
             for src, out of relations
               if path.join(sourceDir, src) is file
-                l.parse path.join(outputDir, out), (res) ->
-                  console.log '[less] wrote file: ' + res.file
-          if _.any(options, (value) => value is 'css' or value is 'watch') then l.watch =>
-            console.log 'changed'
+                @changed.dispatch(@)
+          
+          l.parse()
+          if _.any(options, (value) => value is 'css' or value is 'watch') then l.watch ->
+            @parse()
+        
+        catch err
+          console.log err
           
 #     config = Config.loadFrom(process.cwd() + '/config.json')['compiler']['css']
 #     if _.any(options, (value) => value is 'css' or (value is 'css' and value is 'watch'))
