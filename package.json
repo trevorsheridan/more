@@ -1,6 +1,6 @@
 { "name": "sift",
   "description": "CSS compilation utility",
-  "version": "0.1.4",
+  "version": "0.1.5-pre",
   "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
   "dependencies": {
     "less":          "1.1.5",
