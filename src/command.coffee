@@ -40,7 +40,7 @@ exports.Command = class Command
             for src, out of relations
               if path.join(sourceDir, src) is @source
                 @save path.join(outputDir, out), css, =>
-                  console.log '[less] wrote file: ' + @name()
+                  console.log "[less] wrote file: #{out}"
           if _.all(options, (value) => value is 'css')
             l.parse save
           if _.any(options, (value) => value is 'watch')
