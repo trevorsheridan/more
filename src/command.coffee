@@ -27,35 +27,30 @@ exports.Command = class Command
     config  = Config.loadFrom(process.cwd() + '/config.json')['compiler']['css']
     
     if _.any(options, (value) => value is 'css' or (value is 'css' and value is 'watch'))
-      sourceDir = path.join process.cwd(), config['input']
-      outputDir = path.join process.cwd(), config['output']
-      relations = config['relation']
-      
+      sourceDir  = path.join process.cwd(), config['input']
+      outputDir  = path.join process.cwd(), config['output']
+      relations  = config['relation']
+      less       = new Object
       watchFiles = FileSystem.getFilesInTree(FileSystem.analyzeStructure sourceDir, true)
-      lessObjects = new Object
+      
       for file in watchFiles
         try
-          l = new Less(file, lessObjects)
+          l = new Less(file, less)
           l.parse() # Initially parse the file.
-          lessObjects[l.name()] = l
+          less[l.name()] = l
           
-          if _.all(options, (value) => value is 'css') # Compile then return to the prompt.
+          save = (css) -> # Context shouldn't change, it will automatically change by whoever calls it.
             for src, out of relations
-              if path.join(sourceDir, src) is file
-                l.parse (css) -> # Don't change the context, leave this as a skiny arrow. The context will automatically switch to the active element.
-                  for src, out of relations
-                    if path.join(sourceDir, src) is @source
-                      @save path.join(outputDir, out), css, =>
-                        console.log '[less] wrote file: ' + @name()
+              if path.join(sourceDir, src) is @source
+                @save path.join(outputDir, out), css, =>
+                  console.log '[less] wrote file: ' + @name()
           
-          if _.any(options, (value) => value is 'watch') # Start watching :)
-            l.watch -> # Don't change the context here. It will auto adjust.
-              @parse (css) -> # Don't change the context, leave this as a skiny arrow. The context will automatically switch to the active element.
-                for src, out of relations
-                  if path.join(sourceDir, src) is @source
-                    @save path.join(outputDir, out), css, =>
-                      console.log '[less] wrote file: ' + @name()
-        
+          if _.all(options, (value) => value is 'css')
+            l.parse save
+          
+          if _.any(options, (value) => value is 'watch')
+            l.watch -> # Context shouldn't change, it will automatically change by whoever calls it.
+              @parse save
         catch err
           console.log err
 
