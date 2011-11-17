@@ -6,8 +6,7 @@ FileSystem = require('../filesystem').FileSystem
 
 exports.Less = class Less extends Compiler
   
-  # Less.parse((string)[outfile], (Function)[callback])
-  
+  # Less.parse((string)[outfile], (Function)[callback])  
   parse: (opts...) ->
     throw new Error "In order to parse, source \"@source\" must be defined and of type `string`" if (typeof @source isnt "string") or (@source is null)
     try
