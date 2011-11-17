@@ -4,7 +4,8 @@
       "output": "./",
       "relation": {
         "base.less": "base.css",
-        "global.less": "global.css"
+        "global.less": "global.css",
+        "examples/hello.less": "hello.css"
       }
     }
   }

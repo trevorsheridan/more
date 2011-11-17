@@ -24,14 +24,14 @@ exports.Less = class Less extends Compiler
             return dirs
           )()
           filename: @source
-        @_parser.parse @read(), (err, tree) => # The context is always the parent, the child of the parent is what you work with.
+        # The context is always the parent, the child of the parent is what you work with.
+        @_parser.parse @read(), (err, tree) => 
           if err
             console.log '[less] In ' + path.basename(err.filename) + ', ' + err.message
-          
-          # Iterate through each of your children and register a callback.
+          # Add a listener to each of the children.
           @imports = _.keys @_parser.imports.files
-          for name in @imports
-            @relatives[name].changed.add @changedCallback = (child, callback...) -> # Add a listener when one of your children change.
+          for child in @imports
+            @relatives[child].changed.add @changedCallback = (child, callback...) ->
               @onChange child, callback[0]
             , @
       else
@@ -41,14 +41,17 @@ exports.Less = class Less extends Compiler
           else
             lastImports = @imports
             @imports = _.keys @_parser.imports.files
-            for child in _.difference lastImports, @imports # Remove any (old) child that's not in the current imports.
+            for child in _.difference lastImports, @imports
+              # Remove any (old) child that's not in the current imports.
               @relatives[child].changed.remove @changedCallback
-            
-            # Add listeners for new imports :)
-            
+            for child in _.difference @imports, lastImports
+              # Add any new children!
+              @relatives[child].changed.add @changedCallback = (child, callback...) ->
+                @onChange child, callback[0]
+              , @
+            # Dispatch a "changed" event to anyone who cares.
             @changed.dispatch(@, if callback[0] then callback[0] else new Function)
             if (callback[0]) then callback[0].call @, tree.toCSS() else console.log tree.toCSS()
-            
             # For some reason, the parser caches the old imports. So we will set it to an empty object.
             @_parser.imports.files = {}
     catch err

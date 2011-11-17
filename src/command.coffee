@@ -54,20 +54,6 @@ exports.Command = class Command
         
         catch err
           console.log err
-          
-#     config = Config.loadFrom(process.cwd() + '/config.json')['compiler']['css']
-#     if _.any(options, (value) => value is 'css' or (value is 'css' and value is 'watch'))
-#       for source, output of config['relation']
-#         try
-#           source = path.join process.cwd(), config['input'], source
-#           output = path.join process.cwd(), config['output'], output
-#           less = new Less(source, output).parse (res) ->
-#             console.log '[less] wrote file: ' + res.file
-#           if _.contains(options, 'watch')
-#             less.watch ->
-#               @parse (res) -> console.log '[less] wrote file: ' + res.file
-#         catch err
-#           console.log err
 
 exports.run = ->
   
