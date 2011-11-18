@@ -30,8 +30,7 @@ exports.Command = class Command
       outputDir = path.join process.cwd(), config['output']
       relations = config['relation']
       less = new Object
-      watchFiles = FileSystem.getFilesInTree(FileSystem.analyzeStructure sourceDir, true)
-      for file in watchFiles
+      for file in FileSystem.getFilesInTree FileSystem.analyzeStructure sourceDir, true, ['.less']
         try
           l = new Less(file, less)
           l.parse()
