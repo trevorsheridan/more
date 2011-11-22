@@ -29,7 +29,7 @@ exports.Command = class Command
       sourceDir = path.join process.cwd(), config['input']
       outputDir = path.join process.cwd(), config['output']
       relations = config['relation']
-      less = new Object
+      less = {}
       for file in FileSystem.getFilesInTree FileSystem.analyzeStructure sourceDir, true, ['.less']
         try
           l = new Less(file, less)
