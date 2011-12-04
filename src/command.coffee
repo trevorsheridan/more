@@ -26,19 +26,19 @@ exports.Command = class Command
     options = _.flatten(options)
     config  = Config.loadFrom(process.cwd() + '/config.json')['compiler']['css']
     if _.any(options, (value) => value is 'css' or (value is 'css' and value is 'watch'))
-      sourceDir = path.join process.cwd(), config['input']
-      outputDir = path.join process.cwd(), config['output']
+      source_loc = path.join(process.cwd(), config['input'])
+      output_loc = path.join(process.cwd(), config['output'])
       relations = config['relation']
       less = {}
-      for file in FileSystem.getFilesInTree FileSystem.analyzeStructure sourceDir, true, ['.less']
+      for file in FileSystem.getFilesInTree(FileSystem.analyzeStructure source_loc, true, ['.less'])
         try
           l = new Less(file, less)
           l.parse()
-          less[l.name()] = l
+          less[path.relative(config['input'], l.source)] = l # Set the key to the file name relative to the input directory.
           save = (css) -> # Context shouldn't change, it will automatically change by whoever calls it.
             for src, out of relations
-              if path.join(sourceDir, src) is @source
-                @save path.join(outputDir, out), css, =>
+              if src is path.relative(source_loc, @source)
+                @save path.join(output_loc, out), css, (res) =>
                   console.log "[less] wrote file: #{out}"
           if _.all(options, (value) => value is 'css')
             l.parse save

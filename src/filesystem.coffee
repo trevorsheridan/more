@@ -11,7 +11,7 @@ exports.FileSystem = class FileSystem
     for file in fs.readdirSync path.normalize(dir)
       do (file) =>
         try
-          file = path.join(dir, file)
+          file = path.relative(process.cwd(), path.join(dir, file)) # File is a path relative to the cwd, this is in contrast to the absolute path prior.
           if (withFiles and _.contains extensions[0], path.extname file) or (withFiles and !extensions[0]) or fs.readdirSync file
             d.push file
           for child in children = @analyzeStructure file, withFiles, extensions[0]
