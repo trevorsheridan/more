@@ -37,7 +37,7 @@ exports.Command = class Command
           less[path.relative(config['input'], l.source)] = l # Set the key to the file name relative to the input directory.
           save = (css) -> # Context shouldn't change, it will automatically change by whoever calls it.
             for src, out of relations
-              if src is path.relative(source_loc, @source)
+              if path.normalize(src) is path.relative(source_loc, @source)
                 @save path.join(output_loc, out), css, (res) =>
                   console.log "[less] wrote file: #{out}"
           if _.all(options, (value) => value is 'css')
