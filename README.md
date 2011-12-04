@@ -18,25 +18,36 @@ Once you've installed Node and NPM clone the latest stable release from Github, 
 
 To uninstall Sift run the command: `sudo npm uninstall -g sift`.
 
-### CSS
+-------- ^ Need to update the instructions above ^ --------
 
-#### config.json
+### Config
 
-In order to compile CSS a config.json file must be present in the directory where you want to run the CSS compiler. An example is provided:
+In order to compile CSS, config.json must be present in the directory where you want to execute sift.
+
+#### config.json:
 
     { "compiler": {
         "css": {
           "input": "./less",
           "output": "./compiled",
           "relation": {
-            "base.less": "base.css"
+            "base.less": "base.css",
+            ...
           }
         }
       }
     }
 
-#### Commands
+### Commands
 
-Compile CSS: `sift compile --css` or `sift compile -c`
+&nbsp;&nbsp;**compile**&nbsp;&nbsp;&nbsp;&nbsp;Invoke the compilers for the specified languages, which happens to only be Less at the moment. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**-c, --css**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compile all `.less` files into the corresponding `.css` files defined in config.json.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**-w, --watch**&nbsp;&nbsp;&nbsp;&nbsp;Start watching for changes on all files in the current working directory, and it's children. `ctrl + c` to exit.
 
-Watch for changes and compile CSS (coming soon): `sift compile --css --watch` or `sift compile -cw`
+&nbsp;&nbsp;**-v, --version**&nbsp;&nbsp;&nbsp;&nbsp;Display the current version of sift.
+
+#### Examples:
+
+`sift compile --css` - Compile `.less` files into `.css` and return control to the user.
+
+`sift compile --css --watch` - Start watching for changes on all less files, compile if any file is directly or indirectly referenced in config.json.
