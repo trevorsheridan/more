@@ -1,7 +1,11 @@
 { "name": "more",
-  "description": "CSS Superset Compilation",
+  "description": "LESS is More!",
   "version": "0.1.6",
-  "author": "Trevor Sheridan <trevor@trevor.sh>",
+  "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
+  "contributors": [
+    { "name": "Trevor Sheridan", "email": "trevorjordansheridan@gmail.com" }, 
+    { "name": "Jordan Dobson", "email": "jordandobson@gmail.com" },
+  ],
   "dependencies": {
     "less":          "1.1.5",
     "underscore":    "1.2.1",
