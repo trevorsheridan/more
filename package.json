@@ -9,7 +9,7 @@
     "nomnom":        "1.5.1"
   },
   "devDependencies": {
-    "coffee-script": "1.1.2"
+    "express":       "latest"
   },
   "bin": { "sift": "./bin/sift" }
 }
