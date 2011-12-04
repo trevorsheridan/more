@@ -56,9 +56,9 @@ OPTIONS
 
 EXAMPLES
 
-# sift compile --css
+sift compile --css
     Compile `.less` files into `.css` and return control to the user.
   
-# sift compile --css --watch
+sift compile --css --watch
     Start watching for changes on all less files, compile if any file
     is directly or indirectly referenced in config.json.
