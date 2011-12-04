@@ -1,7 +1,7 @@
 { "compiler": {
     "css": {
-      "input": "./less",
-      "output": "./",
+      "input": "less",
+      "output": "/",
       "relation": {
         "base.less": "base.css",
         "utils/colors.less": "colors.css"
