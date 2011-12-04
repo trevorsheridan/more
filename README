@@ -40,18 +40,18 @@ In order to compile CSS, config.json must be present in the directory where you 
 }
 ```
 
-### Commands
+Commands
 
-&nbsp;&nbsp;**compile**&nbsp;&nbsp;&nbsp;&nbsp;Invoke the compilers for the specified languages, which happens to only be Less at the moment.
+compile: Invoke the compilers for the specified languages, which happens to only be Less at the moment.
+    -c, --css:   Compile all `.less` files into the corresponding `.css` files defined in config.json.
+    -w, --watch: Start watching for changes on all files in the current working directory, and it's children. `ctrl + c` to exit.
+  
+-v, --version: Display the current version of sift.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**-c, --css**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compile all `.less` files into the corresponding `.css` files defined in config.json.
+Examples:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**-w, --watch**&nbsp;&nbsp;&nbsp;&nbsp;Start watching for changes on all files in the current working directory, and it's children. `ctrl + c` to exit.
-
-&nbsp;&nbsp;**-v, --version**&nbsp;&nbsp;&nbsp;&nbsp;Display the current version of sift.
-
-#### Examples:
-
-`sift compile --css` - Compile `.less` files into `.css` and return control to the user.
-
-`sift compile --css --watch` - Start watching for changes on all less files, compile if any file is directly or indirectly referenced in config.json.
+`sift compile --css`
+    Compile `.less` files into `.css` and return control to the user.
+  
+`sift compile --css --watch`
+    Start watching for changes on all less files, compile if any file is directly or indirectly referenced in config.json.
