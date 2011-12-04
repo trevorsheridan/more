@@ -1,7 +1,7 @@
 { "name": "sift",
-  "description": "CSS compilation utility",
+  "description": "CSS superset compilation",
   "version": "0.1.5",
-  "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
+  "author": "Trevor Sheridan <trevor@trevor.sh>",
   "dependencies": {
     "less":          "1.1.5",
     "underscore":    "1.2.1",
