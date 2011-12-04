@@ -26,17 +26,19 @@ In order to compile CSS, config.json must be present in the directory where you 
 
 #### config.json:
 
-    { "compiler": {
-        "css": {
-          "input": "./less",
-          "output": "./compiled",
-          "relation": {
-            "base.less": "base.css",
-            ...
-          }
-        }
+```json
+{ "compiler": {
+    "css": {
+      "input": "./less",
+      "output": "./compiled",
+      "relation": {
+        "base.less": "base.css",
+        ...
       }
     }
+  }
+}
+```
 
 ### Commands
 
