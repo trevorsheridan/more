@@ -40,8 +40,10 @@ In order to compile CSS, config.json must be present in the directory where you 
 
 ### Commands
 
-&nbsp;&nbsp;**compile**&nbsp;&nbsp;&nbsp;&nbsp;Invoke the compilers for the specified languages, which happens to only be Less at the moment. 
+&nbsp;&nbsp;**compile**&nbsp;&nbsp;&nbsp;&nbsp;Invoke the compilers for the specified languages, which happens to only be Less at the moment.
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**-c, --css**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compile all `.less` files into the corresponding `.css` files defined in config.json.
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**-w, --watch**&nbsp;&nbsp;&nbsp;&nbsp;Start watching for changes on all files in the current working directory, and it's children. `ctrl + c` to exit.
 
 &nbsp;&nbsp;**-v, --version**&nbsp;&nbsp;&nbsp;&nbsp;Display the current version of sift.
