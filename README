@@ -6,11 +6,11 @@ INSTALLATION
 
 More requires that your system have Node >= 5.0 and NPM (node package manager) installed.
 
-More is not available in the NPM registry, however, installation is quite simple. To install the latest version of More either clone and checkout a stable tag, or download the latest tag from Github. To install More globally on your system, open a terminal and execute the following command in the "more" directory:
+Installation is quite simple...
 
-  $ sudo npm install -g
+  $ sudo npm install -g more
 
-That's it! Now you can do whatever you'd like with the More directory. To uninstall More from your system, execute:
+...and so is uninstalling!
 
   $ sudo npm uninstall -g more
 
