@@ -1,6 +1,6 @@
 -- WORKING DRAFT --
 
-Sift is a command line utility to rapidly compile Less (http://lesscss.org/) into static CSS. It's current goal is to provide the missing "watch" functionality that the current Less CLI doesn't provide, as well as persist the compiler's instructions (which is extremely useful when working in a large team). Future releases will aim incorporate other CSS superset languages like Stylus, Sass, and Compass.
+Sift is a command line utility to rapidly compile Less (http://lesscss.org/) into static CSS. It's current goal is to provide the missing "watch" functionality that the current Less CLI doesn't provide, as well as persist the compiler's instructions (which is extremely useful when working in a large team). The next release will focus on minifying the CSS output. Future releases will aim incorporate other CSS superset languages like Stylus, Sass, and Compass.
 
 INSTALLATION
 
