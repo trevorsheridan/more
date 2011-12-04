@@ -2,9 +2,9 @@ Sift is a command line utility to rapidly compile Less into static CSS.
 
 INSTALLATION
 
-Sift requires Node >= 5.0 and NPM to be installed on the system.
+Sift requires that your system has Node >= 5.0 and NPM (node package manager) installed.
 
-Sift is not available in the NPM (node package manager) registry, however, installation is quite simple. To install the latest version of sift either clone and checkout a stable tag, or download a package from the downloads section. To install Sift globally on your system, open a terminal and execute the following command in the "sift" directory:
+Sift is not available in the NPM registry, however, installation is quite simple. To install the latest version of sift either clone and checkout a stable tag, or download a package from the downloads section. To install Sift globally on your system, open a terminal and execute the following command in the "sift" directory:
 
   $ sudo npm install -g
 
