@@ -20,7 +20,7 @@ To uninstall Sift run the command: `sudo npm uninstall -g sift`.
 
 -------- ^ Need to update the instructions above ^ --------
 
-Configuration:
+CONFIGURATION
 
 In order to compile CSS, config.json must be present in the directory where you want to execute sift.
 
