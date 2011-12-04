@@ -1,24 +1,16 @@
 Sift is a command line utility to rapidly compile Less into static CSS.
 
-### Install
+INSTALLATION
 
-#### Node
+Sift requires Node >= 5.0 and NPM to be installed on the system.
 
-Node.js >= 5.0 must be installed. To see which version of Node is installed on your system, open a terminal and type `node -v`. If Node isn't installed on your system download the package-installer for your OS (preferred) or build from source; installers are located at: http://nodejs.org/#download.
+Sift is not available in the NPM (node package manager) registry, however, installation is quite simple. To install the latest version of sift either clone and checkout a stable tag, or download a package from the downloads section. To install Sift globally on your system, open a terminal and execute the following command in the "sift" directory:
 
-#### NPM
+  $ sudo npm install -g
 
-Next install the Node Package Manager (NPM). To do so run the following command: `curl http://npmjs.org/install.sh | sh` or `curl http://npmjs.org/install.sh | sudo sh`.
+That's it! Now you can do whatever you'd like with the sift directory. To uninstall sift from your system, execute:
 
-#### Sift
-
-Once you've installed Node and NPM clone the latest stable release from Github, navigate to the "sift" directory in a terminal and type `sudo npm install -g`. This will install Sift globally. You can now do whatever you want with the Sift clone.
-
-### Uninstall
-
-To uninstall Sift run the command: `sudo npm uninstall -g sift`.
-
--------- ^ Need to update the instructions above ^ --------
+  $ sudo npm uninstall -g sift
 
 CONFIGURATION
 
@@ -41,12 +33,11 @@ config.json:
 COMMANDS
 
 compile
-
   Invoke the compilers for the specified language(s), which happens to
   only be Less at the moment.
     
-    Options:
-    
+  Options:
+  
     -c, --css
       Compile all `.less` files into the corresponding `.css` files
       defined in config.json.
