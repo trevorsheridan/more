@@ -4,16 +4,22 @@
   "author": "Trevor Sheridan <trevorjordansheridan@gmail.com>",
   "contributors": [
     { "name": "Trevor Sheridan", "email": "trevorjordansheridan@gmail.com" }, 
-    { "name": "Jordan Dobson", "email": "jordandobson@gmail.com" },
+    { "name": "Jordan Dobson", "email": "jordandobson@gmail.com" }
   ],
   "dependencies": {
-    "less":          "1.1.5",
-    "underscore":    "1.2.1",
-    "signals":       "0.7.0",
-    "nomnom":        "1.5.1"
+    "less": "1.1.5",
+    "underscore": "1.2.1",
+    "signals": "0.7.0",
+    "nomnom": "1.5.1"
   },
   "devDependencies": {
-    "express":       "latest"
+    "express": "latest"
   },
-  "bin": { "mo": "./bin/mo" }
+  "keywords": ["less", "css"],
+  "repository": { 
+    "type" : "git", 
+    "url": "https://github.com/trevorsheridan/more"
+  }, 
+  "bin": { "mo": "./bin/mo" },
+  "engines": { "node":">= 0.5.0 < 0.7.0" }
 }
