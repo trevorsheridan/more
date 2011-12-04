@@ -43,7 +43,9 @@ In order to compile CSS, config.json must be present in the directory where you 
 Commands
 
 compile: Invoke the compilers for the specified languages, which happens to only be Less at the moment.
+
     -c, --css:   Compile all `.less` files into the corresponding `.css` files defined in config.json.
+    
     -w, --watch: Start watching for changes on all files in the current working directory, and it's children.
                  ctrl+C to exit.
   
