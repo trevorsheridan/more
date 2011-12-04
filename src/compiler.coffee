@@ -21,6 +21,7 @@ exports.Compiler = class Compiler extends Base
     callback[0].call @, {code: 1, file: output, data: data} if callback[0]?
   
   # Compiler.watch([callback])
+  # Much of this was inspired by CoffeeScript's implementation. It's damn near perfect.
   watch: (opts...) ->
     fs.stat @source, (err, prevStats) =>
       throw err if err
