@@ -1,12 +1,12 @@
 -- WORKING DRAFT --
 
-Sift is a command line utility to rapidly compile Less (http://lesscss.org/) into static CSS. It's current goal is to provide the missing "watch" functionality that the current Less CLI doesn't provide, as well as persist the compiler's instructions (which is extremely useful when working in a large team). The next release will focus on minifying the CSS output. Future releases will aim incorporate other CSS superset languages like Stylus, Sass, and Compass.
+Sift is a command line utility to rapidly compile Less (http://lesscss.org/) into static CSS. It's current goal is to provide the missing "watch" functionality that the current Less CLI doesn't provide, as well as persist the compiler's instructions (which is extremely useful when working in a large team). The next release will focus on minifying the CSS output. Future releases will aim to incorporate other CSS superset languages like Stylus, Sass, and Compass.
 
 INSTALLATION
 
 Sift requires that your system has Node >= 5.0 and NPM (node package manager) installed.
 
-Sift is not available in the NPM registry, however, installation is quite simple. To install the latest version of sift either clone and checkout a stable tag, or download a package from the downloads section. To install Sift globally on your system, open a terminal and execute the following command in the "sift" directory:
+Sift is not available in the NPM registry, however, installation is quite simple. To install the latest version of sift either clone and checkout a stable tag, or download the latest tag from Github. To install Sift globally on your system, open a terminal and execute the following command in the "sift" directory:
 
   $ sudo npm install -g
 
