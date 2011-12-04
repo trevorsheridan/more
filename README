@@ -42,7 +42,7 @@ COMMANDS
 
 compile
 
-  Invoke the compilers for the specified languages, which happens to
+  Invoke the compilers for the specified language(s), which happens to
   only be Less at the moment.
     
     Options:
