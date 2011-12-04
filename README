@@ -44,14 +44,15 @@ Commands
 
 compile: Invoke the compilers for the specified languages, which happens to only be Less at the moment.
     -c, --css:   Compile all `.less` files into the corresponding `.css` files defined in config.json.
-    -w, --watch: Start watching for changes on all files in the current working directory, and it's children. `ctrl + c` to exit.
+    -w, --watch: Start watching for changes on all files in the current working directory, and it's children.
+                 ctrl+C to exit.
   
 -v, --version: Display the current version of sift.
 
 Examples:
 
-`sift compile --css`
+# sift compile --css
     Compile `.less` files into `.css` and return control to the user.
   
-`sift compile --css --watch`
+# sift compile --css --watch
     Start watching for changes on all less files, compile if any file is directly or indirectly referenced in config.json.
