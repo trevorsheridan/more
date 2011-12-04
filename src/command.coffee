@@ -6,10 +6,10 @@ _       = require 'underscore'
 signals = require 'signals'
 nomnom  = require 'nomnom'
 
-Config   = require('./config').Config
-Compiler = require('./compiler').Compiler
-Less     = require('./compilers/less').Less
-Sift     = require './sift'
+Config     = require('./config').Config
+Compiler   = require('./compiler').Compiler
+Less       = require('./compilers/less').Less
+More       = require './more'
 FileSystem = require('./filesystem').FileSystem
 
 exports.Command = class Command
@@ -71,6 +71,6 @@ exports.run = ->
       flag: true
       help: 'Display the current version.'
       callback: ->
-        return "Sift version #{Sift.VERSION}"
+        return "More version #{More.VERSION}"
   
   nomnom.parse()

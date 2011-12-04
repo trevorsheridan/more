@@ -1,23 +1,23 @@
 -- WORKING DRAFT --
 
-Sift is a command line utility to rapidly compile Less (http://lesscss.org/) into static CSS. It's current goal is to provide the missing "watch" functionality that the current Less CLI doesn't provide, as well as persist the compiler's instructions (which is extremely useful when working in a large team). The next release will focus on minifying the CSS output. Future releases will aim to incorporate other CSS superset languages like Stylus, Sass, and Compass.
+More is a command line utility to rapidly compile Less (http://lesscss.org/) into static CSS. It's current goal is to provide the missing "watch" functionality that the current Less CLI doesn't provide, as well as persist the compiler's instructions (which is extremely useful when working in a large team). The next release will focus on minifying the CSS output. Future releases will aim to incorporate other CSS superset languages like Stylus, Sass, and Compass.
 
 INSTALLATION
 
-Sift requires that your system has Node >= 5.0 and NPM (node package manager) installed.
+More requires that your system have Node >= 5.0 and NPM (node package manager) installed.
 
-Sift is not available in the NPM registry, however, installation is quite simple. To install the latest version of sift either clone and checkout a stable tag, or download the latest tag from Github. To install Sift globally on your system, open a terminal and execute the following command in the "sift" directory:
+More is not available in the NPM registry, however, installation is quite simple. To install the latest version of More either clone and checkout a stable tag, or download the latest tag from Github. To install More globally on your system, open a terminal and execute the following command in the "more" directory:
 
   $ sudo npm install -g
 
-That's it! Now you can do whatever you'd like with the sift directory. To uninstall sift from your system, execute:
+That's it! Now you can do whatever you'd like with the More directory. To uninstall More from your system, execute:
 
-  $ sudo npm uninstall -g sift
+  $ sudo npm uninstall -g more
 
 CONFIGURATION
 
 In order to compile CSS, config.json must be present in the directory
-where you want to execute sift.
+where you want to execute the `mo` command.
 
 config.json:
 
@@ -52,13 +52,13 @@ compile
 OPTIONS
 
 -v, --version
-  Display the current version of sift.
+  Display the current version of More.
 
 EXAMPLES
 
-sift compile --css
+mo compile --css
     Compile `.less` files into `.css` and return control to the user.
   
-sift compile --css --watch
+mo compile --css --watch
     Start watching for changes on all less files, compile if any file
     is directly or indirectly referenced in config.json.

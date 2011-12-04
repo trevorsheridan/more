@@ -1,5 +1,5 @@
-{ "name": "sift",
-  "description": "CSS superset compilation",
+{ "name": "more",
+  "description": "CSS Superset Compilation",
   "version": "0.1.6",
   "author": "Trevor Sheridan <trevor@trevor.sh>",
   "dependencies": {
@@ -11,5 +11,5 @@
   "devDependencies": {
     "express":       "latest"
   },
-  "bin": { "sift": "./bin/sift" }
+  "bin": { "mo": "./bin/mo" }
 }
