@@ -14,7 +14,8 @@ That's it! Now you can do whatever you'd like with the sift directory. To uninst
 
 CONFIGURATION
 
-In order to compile CSS, config.json must be present in the directory where you want to execute sift.
+In order to compile CSS, config.json must be present in the directory
+where you want to execute sift.
 
 config.json:
 
@@ -33,8 +34,8 @@ config.json:
 COMMANDS
 
 compile
-  Invoke the compilers for the specified language(s), which happens to
-  only be Less at the moment.
+  Invoke the compilers for the specified language(s), which happens
+  to only be Less at the moment.
     
   Options:
   
@@ -57,4 +58,5 @@ EXAMPLES
     Compile `.less` files into `.css` and return control to the user.
   
 # sift compile --css --watch
-    Start watching for changes on all less files, compile if any file is directly or indirectly referenced in config.json.
+    Start watching for changes on all less files, compile if any file
+    is directly or indirectly referenced in config.json.
