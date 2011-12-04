@@ -8,7 +8,7 @@ exports.Compiler = class Compiler extends Base
   
   constructor: (source) ->
     @source = source
-    @_name  = path.basename source
+    @setName path.basename(source)
     super
   
   # Compiler.read()
