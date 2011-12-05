@@ -31,7 +31,7 @@ exports.Less = class Less extends Compiler
           # Add a listener to each of the children.
           @imports = _.keys @_parser.imports.files
           for child in @imports
-            @relatives[child.slice(2)].changed.add @changedCallback = (child, callback...) ->
+            @relatives[path.normalize(child)].changed.add @changedCallback = (child, callback...) ->
               @onChange child, callback[0]
             , @
       else
@@ -43,10 +43,10 @@ exports.Less = class Less extends Compiler
             @imports = _.keys @_parser.imports.files
             for child in _.difference(lastImports, @imports)
               # Remove any (old) child that's not in the current imports.
-              @relatives[child.slice(2)].changed.remove @changedCallback
+              @relatives[path.normalize(child)].changed.remove @changedCallback
             for child in _.difference(@imports, lastImports)
               # Add any new children!
-              @relatives[child.slice(2)].changed.add @changedCallback = (child, callback...) ->
+              @relatives[path.normalize(child)].changed.add @changedCallback = (child, callback...) ->
                 @onChange child, callback[0]
               , @
             # Dispatch a "changed" event to anyone who cares.
